@@ -18,7 +18,7 @@ const mostrarClienteId = async (req = request, res = response) =>{
     const { id } = req.params
     const cliente = await Cliente.findById( id );
 
-    res.json({data: {cliente}})
+    res.json({data: cliente})
 }
 
 
