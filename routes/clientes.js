@@ -5,7 +5,8 @@ const { mostrarClientes,
         crearCliente, 
         actualizarCliente, 
         eliminarCliente, 
-        mostrarJWT } = require('../controllers/clientes');
+        mostrarJWT, 
+        mostrarClienteId} = require('../controllers/clientes');
 const { clienteExiste } = require('../helpers/db-validators');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
@@ -31,7 +32,20 @@ router.get('/',[
     validarCampos
 ], mostrarClientes );
 
-// Voy a ir a beber agua xD
+router.get('/:id',[
+    check('x-token','El token es obligatorio').not().isEmpty(),
+    validarJWT,
+    validarCampos,
+    check('id', 'Es obligatorio el id').not().isEmpty(),
+    check('id', 'El id no es válido').isMongoId(),
+    validarCampos,
+    check('id').custom(clienteExiste),
+    validarCampos,
+], mostrarClienteId );
+
+
+
+
 
 router.post('/',[
     // Validaciones necesarias

@@ -14,7 +14,12 @@ const mostrarJWT = async( req = request, res = response ) =>{
 
 }
 
+const mostrarClienteId = async (req = request, res = response) =>{
+    const { id } = req.params
+    const cliente = await Cliente.findById( id );
 
+    res.json({data: {cliente}})
+}
 
 
 const mostrarClientes = async( req , res = response ) =>{
@@ -123,5 +128,6 @@ module.exports = {
     crearCliente,
     actualizarCliente,
     eliminarCliente,
-    mostrarJWT
+    mostrarJWT,
+    mostrarClienteId
 }
