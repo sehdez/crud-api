@@ -75,9 +75,11 @@ const actualizarCliente = async ( req , res = response ) =>{
         const { id } = req.params;
 
         //  Verificar el email
-        const emailAntiguo = req.cliente.email
+        const emailAntiguo = await Cliente.findById(id)
+
+        console.log(emailAntiguo.email, email)
         
-        if( emailAntiguo !== email ){
+        if( emailAntiguo.email !== email ){
             const existeEmail = await Cliente.findOne( {email} );
 
             if( existeEmail ){
