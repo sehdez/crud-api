@@ -116,7 +116,8 @@ const eliminarCliente = async ( req , res = response ) =>{
 
     const { id } = req.params;
 
-    const clienteEliminado = await Cliente.findByIdAndUpdate(id, {estado: false}, {new:true});
+    // const clienteEliminado = await Cliente.findByIdAndUpdate(id, {estado: false}, {new:true});
+    const clienteEliminado = await Cliente.findByIdAndDelete(id);
     
     
     res.json({
