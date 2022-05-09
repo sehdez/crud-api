@@ -17,7 +17,7 @@ const router = Router();
 // domicilio y correo electrónico.
 // nombres apellidoPaterno apellidoMaterno domicilio email estado
 
-router.get('/token/',[
+router.post('/token/',[
     check('id','El id es requerido' ).not().isEmpty(),
     check('id', 'El id no es válido').isMongoId(),
     validarCampos,
